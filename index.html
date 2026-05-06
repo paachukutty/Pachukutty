@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Paachu ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#020111,#191621);
+    color:white;
+}
+
+/* STAR BACKGROUND */
+
+.stars{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+.stars:after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+
+    box-shadow:
+    50px 80px white,
+    100px 150px white,
+    200px 40px white,
+    300px 220px white,
+    400px 120px white,
+    500px 300px white,
+    600px 180px white,
+    700px 90px white,
+    800px 220px white,
+    900px 140px white,
+    1000px 260px white,
+    1100px 80px white,
+    1200px 170px white,
+    1300px 300px white,
+    1400px 100px white;
+
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:0.3;}
+    to{opacity:1;}
+}
+
+/* SCREEN */
+
+.screen{
+    display:none;
+    height:100vh;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.active{
+    display:flex;
+}
+
+/* LOADING BAR */
+
+#progress{
+    width:80%;
+    max-width:300px;
+    height:20px;
+    background:#444;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+#bar{
+    width:0%;
+    height:100%;
+    background:#ff4d6d;
+}
+
+/* BUTTON */
+
+button{
+    padding:14px 24px;
+    border:none;
+    border-radius:12px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+    box-shadow:0 0 15px rgba(255,77,109,0.5);
+}
+
+/* HEART */
+
+.heart{
+    font-size:90px;
+    animation:beat 1s infinite;
+}
+
+@keyframes beat{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+/* INPUT */
+
+input{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    text-align:center;
+    font-size:18px;
+    width:200px;
+}
+
+/* LETTER */
+
+.letter-box{
+    max-width:700px;
+    max-height:60vh;
+    overflow:auto;
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:20px;
+    line-height:1.8;
+    backdrop-filter:blur(5px);
+}
+
+/* IMAGE */
+
+img{
+    width:85%;
+    max-width:350px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- LOADING PAGE -->
+
+<div id="loading" class="screen active">
+
+<h2>
+Creating magic ✨ <br>
+A beautiful surprise is loading
+</h2>
+
+<div id="progress">
+<div id="bar"></div>
+</div>
+
+</div>
+
+<!-- LOCK PAGE -->
+
+<div id="lock" class="screen">
+
+<h1>🔒 Secret Gateway</h1>
+
+<p>Enter the lock to unlock my heart</p>
+
+<p><i>Hint : three numbers that mean I LOVE YOU</i></p>
+
+<input type="password" id="code" placeholder="Enter code">
+
+<button onclick="checkCode()">Unlock ❤️</button>
+
+</div>
+
+<!-- HEART PAGE -->
+
+<div id="heartPage" class="screen">
+
+<div class="heart">❤️</div>
+
+<h2>My heart opens for you</h2>
+
+<button onclick="nextPage('sweet')">
+Continue
+</button>
+
+</div>
+
+<!-- SWEET PAGE -->
+
+<div id="sweet" class="screen">
+
+<h2>I’ve been hiding something sweet</h2>
+
+<button onclick="nextPage('letter')">
+Show me ❤️
+</button>
+
+</div>
+
+<!-- LETTER PAGE -->
+
+<div id="letter" class="screen">
+
+<div class="letter-box">
+
+<h2>Dear Paachu ,</h2>
+
+<p>
+
+Sorry paachu njhn oru love letter ne chothychyt ath ezhuthaan ulla effort polm kaanikathen.
+Sorry you deserve more effort i know.
+Iny ingnonm ente side ninn undavulla im sorry chakkaree..<br><br>
+
+I love youu soo soo much..<br><br>
+
+Ne choychille why i love youu enn..<br><br>
+
+i love you because you inspire me…<br><br>
+
+You are straight forward.
+Enth undelum ne ath mugath noki paranjh enne thiruthaar ind and i love that.
+Seriously enik ninte frontil ith vare act akendy vannytila.
+I can be me and you wont judge me and that is biggest plus i have seen in you..
+you are a strong women paachu..<br><br>
+
+and the biggest reason i love you is because you are very sexy 🫦<br><br>
+
+Parayan kure ind but athellam iny njhn letter kude parayaam so just wait for our next meet 😌
+
+</p>
+
+</div>
+
+<button onclick="nextPage('memory')">
+View Memories 💖
+</button>
+
+</div>
+
+<!-- MEMORY PAGE -->
+
+<div id="memory" class="screen">
+
+<h1>Our Memories 📸</h1>
+
+<img id="slide" src="photo1.jpg">
+
+</div>
+
+<script>
+
+/* LOADING */
+
+let width = 0;
+
+let loading = setInterval(function(){
+
+if(width >= 100){
+
+clearInterval(loading);
+
+nextPage('lock');
+
+}
+
+else{
+
+width++;
+
+document.getElementById("bar").style.width = width + "%";
+
+}
+
+},40);
+
+/* PAGE SWITCH */
+
+function nextPage(pageId){
+
+document.querySelectorAll(".screen").forEach(function(screen){
+
+screen.classList.remove("active");
+
+});
+
+document.getElementById(pageId).classList.add("active");
+
+}
+
+/* LOCK */
+
+function checkCode(){
+
+let code = document.getElementById("code").value;
+
+if(code === "143"){
+
+nextPage("heartPage");
+
+}
+
+else{
+
+alert("Wrong code 😜");
+
+}
+
+}
+
+/* SLIDESHOW */
+
+let images = [
+
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg"
+
+];
+
+let current = 0;
+
+setInterval(function(){
+
+let slide = document.getElementById("slide");
+
+if(slide){
+
+current++;
+
+if(current >= images.length){
+
+current = 0;
+
+}
+
+slide.src = images[current];
+
+}
+
+},2500);
+
+</script>
+
+</body>
+</html>
